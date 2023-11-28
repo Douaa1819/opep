@@ -1,0 +1,97 @@
+
+.btn {
+    display: block;
+    width: 50%;
+    cursor: pointer;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    font-size: 1rem; 
+    padding: 1rem; 
+    background-color: #00CC00;
+    text-align: center;
+    color: #fff; 
+}
+
+/* Form  */
+.admin-product-form-container {
+    background-color: #ffffffd0;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+    width: 40%;
+    margin: 5% auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-product-form-container form {
+    max-width: 40rem;
+    width: 100%; 
+}
+
+.admin-product-form-container form h3 {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.admin-product-form-container form .box {
+    width: 100%;
+    border-radius: .5rem;
+    font-size: 1rem;
+    margin: 1rem 0;
+    background: #eee; 
+    text-transform: none;
+    padding: 13px;
+    box-sizing: border-box;
+}
+
+.admin-product-form-container form button {
+    background-color: #00CC00;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%; 
+    margin-top: 1rem; 
+}
+
+/* Plantes Styles */
+.product-display {
+    margin: 1rem 0;
+    width: 100%; 
+    overflow-x: auto; 
+}
+
+.product-display .product-display-table {
+    text-align: center;
+    width: 70%; 
+    max-width: 100%; 
+    margin: 1rem auto; 
+    border-collapse: collapse; 
+}
+
+.product-display .product-display-table th,
+.product-display .product-display-table td {
+    padding: 0.5rem; 
+    font-size: 0.8rem; 
+    border: 1px solid #333; 
+    max-width: 100px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+
+.product-display .product-display-table .btn:first-child{
+    margin-top: 0;
+ }
+ 
+ .product-display .product-display-table .btn:last-child{
+    background: crimson;
+ }
+ 
