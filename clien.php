@@ -61,6 +61,7 @@ if (isset($_POST['search_submit'])) {
         ?>
     </ul>
 </nav>
+
 <!-- nom du plant filter -->
 <div class="flex justify-end items-center mt-4 pr-4">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data" class="flex items-center">

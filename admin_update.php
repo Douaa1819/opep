@@ -52,9 +52,9 @@ if(isset($_POST['update_product'])){
                ?>
       
             <form action="" method="post" enctype="multipart/form-data">
-            <h3 class="title">update the product</h3>
+            <h3 class="title">update the category</h3>
             <input type="text" class="box" name="product_name" value="<?php echo $row['nom']; ?>" placeholder="enter the category name">
-            <input type="submit" value="update product" name="update_product" class="btn">
+            <input type="submit" value="update category" name="update_product" class="btn">
             <a href="catégorie.php" class="btn">go back!</a>
             </form>
          

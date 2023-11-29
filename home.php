@@ -85,7 +85,6 @@ $selecte = mysqli_query($conn, "SELECT * FROM catégorie");
          <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
          <h3>add a new plant</h3>
          <input type="text" placeholder="enter plant name" name="product_name" class="box">
-         <!-- <input type="text" placeholder="enter category name"  name="category_name" class="box"> -->
           <select class="box">
             <?php while($row = $selctCatg->fetch_assoc()): ?>
               <option><?php echo $row['nom'] ?> </option>
