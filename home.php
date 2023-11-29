@@ -60,6 +60,44 @@ $select = mysqli_query($conn, "SELECT plante.*, catégorie.nom AS category_name 
     <title>Plantes</title>
 </head>
 <body>
+    <!-- HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+     <link rel="shortcut icon" href="img/licone.png" type="image/x-icon">
+    <link rel="stylesheet" href="style3.css">
+    <title>Plantes</title>
+</head>
+<body>
+     
+
+<div class="header-2">
+
+  <nav class="bg-gray-300 py-2 md:py-4">
+    <div class="container px-4 mx-auto md:flex md:items-center">
+  <div class="w-40"><img src="img/llogo.png"></div>  
+      <div class="flex justify-between items-center">
+       
+        <button class="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden" id="navbar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
+        <a href="home.php" class="p-2 lg:px-4 md:mx-2 text-white rounded bg-green-600">plants</a>
+        <a href="catégorie.php" class="p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300">category</a>
+
+        <a href="clien.php" class="p-2 lg:px-4 md:mx-2 text-green-600 text-center border border-solid border-green-600 rounded hover:bg-green-800 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">Client</a>
+      </div>
+    </div>
+  </nav>
+  <!-- forme -->
+
+  
     <div class="container">
         <div class="admin-product-form-container">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
