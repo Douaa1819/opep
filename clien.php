@@ -14,7 +14,23 @@ if (isset($_POST['search_submit'])) {
     $searchQuery = mysqli_real_escape_string($conn, $_POST['search_query']);
 }
 
+
+
+if (isset($_POST ['add'])){
+$id_user= $_SESSION['id_user'];
+$id_panier= $_SESSION['id_plante'];
+$req= "INSERT INTO panier (id_user,id_plante) VALUES ($id_user,$id_panier)";
+$result= $conn->query($req);
+if($result){
+    echo "<script>alert('Succès');</script>";
+
+}else{
+    echo "<style>alert('erreur');</style>";
+}
+
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +40,12 @@ if (isset($_POST['search_submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/licone.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xrwnEFO3v2eLuGqDqlpo5eK5CQ5+gHpJG0BEmWL1BaNVR1Vw+YF6t8uE+Y6xLPL2e7N23Lx7ekgnf1zT9p0LEHA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="style3.css">
     <title>Client</title>
 </head>
 
-<body class="bg-gray-200">
 
 <body class="bg-gray-200">
 
@@ -42,9 +59,17 @@ if (isset($_POST['search_submit'])) {
                 </button>
             </div>
             <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
-                <a href="clien.php" class="p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300">Home</a>
-                <a href="#" class="p-2 lg:px-4 md:mx-2 text-green-600 text-center border border-solid border-green-600 rounded hover:bg-green-800 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">Sign-out</a>
-            </div>
+                <a href="clien.php" class="p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300">Shopping Cart</a>
+                <a href="#" class="p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300">Contact</a>
+                <a href="panier.php">
+                <svg class="h-8 p-1 hover:text-green-500 duration-200" aria-hidden="true" focusable="false"
+                data-prefix="far" data-icon="shopping-cart"  href="panier.php"role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512" class="svg-inline--fa fa-shopping-cart fa-w-18 fa-7x">
+                <path fill="currentColor"
+                    d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"
+                    class=""></path>
+            </svg>
+            </a>
         </div>
     </nav>
 </div>
@@ -107,6 +132,8 @@ if (isset($_POST['search_submit'])) {
         <div class="grid grid-cols-4 gap-4 ">
 
             <?php
+
+
             while ($row = mysqli_fetch_assoc($plantResult)) {
                 echo '<div class="bg-white p-4 shadow-md w-full md:w-80 h-96 flex flex-col justify-between">';
                 echo '<img src="' . $row['image'] . '" alt="' . $row['Nom'] . '" class="w-70 h-1/2 object-cover mb-4">';
@@ -115,12 +142,15 @@ if (isset($_POST['search_submit'])) {
                 echo '<p class="text-gray-700 mb-4">' . $row['description'] . '</p>';
                 echo '<p class="text-green-500 font-semibold">Prix: ' . $row['prix'] . '$' . '</p>';
                 echo '</div>';
+                echo '<form  method="post">';
+                echo '<input type="hidden" name="id_plante" value="' . $row['id'] . '">';
+                $_SESSION['id_plante']=$row['id'];
+                
+                echo '<button name ="add" type="submit" class="bg-green-500 text-white px-4 py-2 mt-4">Ajouter </button>';
+                echo '</form>';
                 echo '</div>';
             }
 
-            mysqli_free_result($categoryResult);
-            mysqli_free_result($plantResult);
-            mysqli_close($conn);
             ?>
         </div>
     </section>

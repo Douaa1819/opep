@@ -8,9 +8,11 @@ if($_SESSION['email']) {
     $email = $_SESSION['email'];
 }
 $selec = "SELECT * FROM users WHERE email = '$email'";
+
 $query = mysqli_query($conn,$selec);
 $row = mysqli_fetch_assoc($query);
 $id = $row['id'];
+$_SESSION['id_user']=$row['id'];
    
 
     $sql = "INSERT INTO  roles (user_id,name) VALUES ('$id','$role')";
