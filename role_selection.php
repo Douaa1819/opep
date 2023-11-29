@@ -26,9 +26,9 @@ $_SESSION['id_user']=$row['id'];
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,6 @@ $_SESSION['id_user']=$row['id'];
                     <option value="client">Client</option>
                 </select>
             </div>
-
             <div class="text-right">
                 <input type='submit' value='Submit' name="submit"
                     class="bg-green-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-gray-400">
