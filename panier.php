@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
 
 if (!$id_user) {
-    die("User not logged in."); 
+    die("User not logged in."); // Adjust this error handling as needed
 }
 
 $cartQuery = "SELECT id_panier, id_plante, Nom, prix, image
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deleteCartItem'])) {
         die("Delete query failed: " . mysqli_error($conn));
     }
 
-    // Get total number of plants after deletion
+    //  total number of plants after deletion
     $cartResultAfterDeletion = mysqli_query($conn, $cartQuery);
     $totalAfterDeletion = mysqli_num_rows($cartResultAfterDeletion);
 
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deleteCartItem'])) {
 }
 
 if (isset($_POST['add_commande'])) {
-    $cartQuery = "SELECT id_panier, id_plante, Nom, id_user
+    $cartQuery = "SELECT id_panier, id_plante, Nom, id_user, image
                   FROM panier, plante
                   WHERE id_plante = id AND id_user = $id_user";
     $cartResult = mysqli_query($conn, $cartQuery);
@@ -57,18 +57,17 @@ if (isset($_POST['add_commande'])) {
         $name = $row['Nom'];
         $id_P = $row['id_plante'];
         $id_U = $row['id_user'];
+        $image = $row['image'];
 
         // Insert into the commande table
         $reqet = "INSERT INTO commande (nomCommande, id_plante, id_user) VALUES ('$name', $id_P, $id_U)";
         $result = mysqli_query($conn, $reqet);
-
+    }
 }
 
-
-$totalBeforeDisplay = mysqli_num_rows($cartResult);
-
-e
+// Initialize total price
 $totalPrice = 0;
+
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +111,8 @@ $totalPrice = 0;
 
             <?php
             while ($row = mysqli_fetch_assoc($cartResult)) {
-                // Update total price
+
+               total price
                 $totalPrice += $row['prix'];
 
                 echo '<form method="post" class="bg-white p-4 shadow-md mb-4 flex items-center justify-between">';
@@ -124,19 +124,28 @@ $totalPrice = 0;
                 echo '<button type="submit" name="deleteCartItem" value="' . $row['id_panier'] . '" class="text-red-500 hover:text-red-700">Delete</button>';
                 echo '</form>';
             }
+
             if (mysqli_num_rows($cartResult) == 0) {
                 echo '<p class="text-gray-700">Your shopping cart is empty.</p>';
             }
             ?>
-            <p>Total price of plants: <?php echo $totalPrice; ?>$</p>
-            <p>Total products : <?php echo $totalAfterDeletion ?? $totalBeforeDisplay; ?></p>
+           
+           
             <form method="post">
-                <button name="add_commande" type="submit" class="bg-green-500 text-white px-3 py-1 mt-4 ">commander </button>
+                <?php if (isset($_POST['add_commande'])) : ?>
+                    <div class="bg-white p-4 shadow-md mb-4">
+                        <img src="<?php echo $image; ?>" alt="<?php echo $name; ?>" class="w-16 h-16 object-cover mr-4">
+                        <p>User: <?php echo $_SESSION['firstName']; ?></p>
+                        <p>Command: <?php echo $name; ?></p>
+                        <p>Total products : <?php echo $totalAfterDeletion ?? $totalBeforeDeletion; ?></p>
+                        <button type="submit" name="retour" class="bg-green-500 text-white px-3 py-1 mt-4">Retour</button>
+                    </div>
+                <?php else : ?>
+                    <button name="add_commande" type="submit" class="bg-green-500 text-white px-3 py-1 mt-4 ">Commander </button>
+                <?php endif; ?>
             </form>
         </section>
-
     </div>
-
 </body>
 
 </html>
