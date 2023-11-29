@@ -159,3 +159,27 @@ ALTER TABLE `plante`
 COMMIT;
 
 
+--table commande--
+CREATE TABLE `commande` (
+  `idCommande` int(11) NOT NULL,
+  `nomCommande` varchar(100) DEFAULT NULL,
+  `id_plante` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
+) 
+
+
+ALTER TABLE `commande`
+  ADD PRIMARY KEY (`idCommande`),
+  ADD KEY `id_plante` (`id_plante`),
+  ADD KEY `id_user` (`id_user`);
+
+
+
+ALTER TABLE `commande`
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `commande`
+  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_plante`) REFERENCES `plante` (`id`),
+  ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+COMMIT;

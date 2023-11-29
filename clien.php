@@ -129,31 +129,30 @@ if($result){
 
     <section class="p-8">
         <!-- Product Grid -->
-        <div class="grid grid-cols-4 gap-4 ">
+        <div class="grid grid-cols-4 gap-5 ">
 
-            <?php
-
-
-            while ($row = mysqli_fetch_assoc($plantResult)) {
-                echo '<div class="bg-white p-4 shadow-md w-full md:w-80 h-96 flex flex-col justify-between">';
-                echo '<img src="' . $row['image'] . '" alt="' . $row['Nom'] . '" class="w-70 h-1/2 object-cover mb-4">';
-                echo '<div class="flex-1">';
-                echo '<h2 class="text-lg font-semibold mb-2">' . $row['Nom'] . '</h2>';
-                echo '<p class="text-gray-700 mb-4">' . $row['description'] . '</p>';
-                echo '<p class="text-green-500 font-semibold">Prix: ' . $row['prix'] . '$' . '</p>';
-                echo '</div>';
-                echo '<form  method="post">';
-                echo '<input type="hidden" name="id_plante" value="' . $row['id'] . '">';
-                $_SESSION['id_plante']=$row['id'];
-                echo '<button name ="add" type="submit" class="bg-green-500 text-white px-3 py-1 mt-4">Ajouter </button>';
-                echo '</form>';
-                echo '</div>';
-            }
-
-            ?>
-        </div>
-    </section>
-
+           
+        <?php
+while ($row = mysqli_fetch_assoc($plantResult)) {
+    echo '<div class="bg-white p-3 shadow-md w-80 md:w-80 h-96 flex flex-col justify-between mb-4">';
+    echo '<div class="relative h-40 mb-4">';
+    echo '<img src="' . $row['image'] . '" alt="' . $row['Nom'] . '" class="w-full h-full object-cover">';
+    echo '</div>';
+    echo '<div class="flex-1">';
+    echo '<h2 class="text-lg font-semibold mb-2">' . $row['Nom'] . '</h2>';
+    echo '<p class="text-gray-700 mb-4">' . $row['description'] . '</p>';
+    echo '<p class="text-green-500 font-semibold">Prix: ' . $row['prix'] . '$' . '</p>';
+    echo '</div>';
+    echo '<form  method="post">';
+    echo '<input type="hidden" name="id_plante" value="' . $row['id'] . '">';
+    $_SESSION['id_plante'] = $row['id'];
+    echo '<button name ="add" type="submit" class="bg-green-500 text-white px-3 py-1 mt-4">Ajouter </button>';
+    echo '</form>';
+    echo '</div>';
+}
+?>
+    </div>
+</section>
 </body>
 
 </html>
