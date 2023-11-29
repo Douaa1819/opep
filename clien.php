@@ -145,8 +145,7 @@ if($result){
                 echo '<form  method="post">';
                 echo '<input type="hidden" name="id_plante" value="' . $row['id'] . '">';
                 $_SESSION['id_plante']=$row['id'];
-                
-                echo '<button name ="add" type="submit" class="bg-green-500 text-white px-4 py-2 mt-4">Ajouter </button>';
+                echo '<button name ="add" type="submit" class="bg-green-500 text-white px-3 py-1 mt-4">Ajouter </button>';
                 echo '</form>';
                 echo '</div>';
             }
