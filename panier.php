@@ -112,7 +112,7 @@ $totalPrice = 0;
             <?php
             while ($row = mysqli_fetch_assoc($cartResult)) {
 
-               total price
+           
                 $totalPrice += $row['prix'];
 
                 echo '<form method="post" class="bg-white p-4 shadow-md mb-4 flex items-center justify-between">';
