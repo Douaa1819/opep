@@ -112,7 +112,6 @@ $totalPrice = 0;
             <?php
             while ($row = mysqli_fetch_assoc($cartResult)) {
 
-               total price
                 $totalPrice += $row['prix'];
 
                 echo '<form method="post" class="bg-white p-4 shadow-md mb-4 flex items-center justify-between">';
@@ -141,6 +140,7 @@ $totalPrice = 0;
                         <button type="submit" name="retour" class="bg-green-500 text-white px-3 py-1 mt-4">Retour</button>
                     </div>
                 <?php else : ?>
+                    <p> Total prix : <?php echo  $totalPrice?> </p>
                     <button name="add_commande" type="submit" class="bg-green-500 text-white px-3 py-1 mt-4 ">Commander </button>
                 <?php endif; ?>
             </form>
