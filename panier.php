@@ -35,10 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deleteCartItem'])) {
         die("Delete query failed: " . mysqli_error($conn));
     }
 
-    //  total number of plants after deletion
-    $cartResultAfterDeletion = mysqli_query($conn, $cartQuery);
-    $totalAfterDeletion = mysqli_num_rows($cartResultAfterDeletion);
-
+    // Redirect to avoid resubmitting form on page refresh
     header("Location: {$_SERVER['PHP_SELF']}");
     exit();
 }
@@ -63,11 +60,13 @@ if (isset($_POST['add_commande'])) {
         $reqet = "INSERT INTO commande (nomCommande, id_plante, id_user) VALUES ('$name', $id_P, $id_U)";
         $result = mysqli_query($conn, $reqet);
     }
+
+    // Clear the cart after placing the order
+    mysqli_query($conn, "DELETE FROM panier WHERE id_user = $id_user");
 }
 
 // Initialize total price
 $totalPrice = 0;
-
 ?>
 
 <!DOCTYPE html>
