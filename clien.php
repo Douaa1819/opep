@@ -17,7 +17,7 @@ if (isset($_POST['search_submit'])) {
 
 if (isset($_POST['add'])) {
     $id_user = $_SESSION['id_user'];
-    $id_panier = $_SESSION['id_plante'];
+    $id_panier = $_POST['id_plante'];
     $req = "INSERT INTO panier (id_user,id_plante) VALUES ($id_user,$id_panier)";
     $result = $conn->query($req);
     if ($result) {
@@ -149,4 +149,3 @@ if (isset($_POST['add'])) {
 </body>
 
 </html>
-<!-- VERSION FONCTIONNE -->

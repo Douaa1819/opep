@@ -109,6 +109,7 @@ $totalPrice = 0;
         <section class="w-full max-w-2xl">
 
             <?php
+            
             while ($row = mysqli_fetch_assoc($cartResult)) {
 
            
